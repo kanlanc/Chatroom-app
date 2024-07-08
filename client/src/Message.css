@@ -1,0 +1,57 @@
+/* Message.css */
+.message {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .message-content {
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  .message-content-container {
+    max-width: calc(80% - 150px); /* Adjust according to your layout */
+    overflow-wrap: break-word; /* Wrap long words */
+  }
+  
+  .message-actions {
+    display: flex;
+    align-items: center;
+  }
+  
+/* Message.css */
+.vote-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+    font-size: 20px; /* Set the font size to make the buttons bigger */
+  }
+  
+  .vote-btn:hover {
+    color: #007bff;
+  }
+  
+  .active {
+    color: green; /* Change color to green when button is active */
+  }
+  
+  .upvote-btn[disabled] {
+    cursor: not-allowed; /* Change cursor to not-allowed when button is disabled */
+  }
+  
+  .downvote-btn[disabled] {
+    cursor: not-allowed; /* Change cursor to not-allowed when button is disabled */
+  }
+  
+  .downvote-btn.active {
+    color: red; /* Change color to red when button is active */
+  }
+  
+  

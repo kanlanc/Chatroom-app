@@ -1,0 +1,45 @@
+version: '1'
+services:
+  client:
+    build: ./client       # Path to Dockerfile for client
+    environment:
+      - SERVER_URL=http://server:8080
+      - PORT=3000
+    ports:
+      - "3000:3000"       # Expose port 3000 for client
+    networks:
+      - chat_network
+
+  server:
+    build: ./server       # Path to Dockerfile for server
+    environment:
+      - MONGODB_URL=mongodb://database:27017/ChatRoomDB
+      - PORT=8080
+      - HOST=0.0.0.0
+      - WORKERS=1
+    ports:
+      - "8080:8080"       # Expose port 6000 for server
+    depends_on:
+      - database          # Ensure database container is running before server
+    restart: on-failure
+    networks:
+      - chat_network
+
+  database:
+    image: mongo:latest  # You can use any database image you prefer
+    ports:
+      - "27017:27017"      # Expose MongoDB port
+    networks:
+      - chat_network
+    volumes:
+        - type: volume
+          source: mongodb_data_volume
+          target: /data/db
+
+volumes:
+  mongodb_data_volume:
+    external: true
+
+networks:
+  chat_network:
+    driver: bridge
